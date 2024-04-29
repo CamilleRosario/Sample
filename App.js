@@ -1,60 +1,43 @@
-import { View, Text, ImageBackground, Image, StyleSheet, SafeAreaView, TextInput, TouchableOpacity} from 'react-native';
+import { View, Text, ImageBackground, Image, Button, StyleSheet, SafeAreaView,TouchableOpacity } from 'react-native';
 import React from 'react';
-import { useState } from 'react';
-
-
-
+//import { useState } from 'react';
 
 //images
 const Verify_Email_Image = require('./assets/verify_email.png');
 const Final_Name_Image = require("./assets/FINAL_NAME.png");
 const Background_Image = require("./assets/bg.png");
 
+export default function Verify() {
 
-export default function Signup_2() {
-
-  const [Username, setName] = useState("");
-  
-  //for date picker
-  const [open, setOpen]= useState(false);
+ //const [OTP, setOTP] = useState('');
+ 
 
   return (
-    <SafeAreaView style={styles.container}>
-    <ImageBackground source= {Background_Image} style = {styles.container}>
+    <SafeAreaView style= {styles.container}>
+      <ImageBackground source= {Background_Image} style = {styles.container}>
       <Image source ={Verify_Email_Image}/>
 
-      <Text> Let's Create Your Account</Text>
-      <Text>Creating Reminders Just For You</Text>
+      <Text>Let's Verify Your Email</Text>
+      <Text>Code is given to your given email</Text>
+      {/* inset box for otp*/ }
+      {/*<TextInput style= {styles.input} value ={OTP} onChangeText={setOTP} 
+        placeholder= "Enter OTP" keyboardType = "numeric"/>*/}
 
-      <Text>Username</Text>
-      <TextInput style = {styles.input} value = {Username} onChangeText = {setName} />
+      <Text>Didn't receive code? </Text>
 
-      <Text>Date of Birth</Text>
-      {/*Insert date picker for user input */}
-       <TouchableOpacity>
-        
-       </TouchableOpacity>
-        
-      
-      <Text>By tapping Sign Up, you agree to the terms and condition and
-        Privacy Policy of this App
-      </Text>
-
-      <TouchableOpacity style = {styles.square_buttons} 
-      onPress={()=> console.log("Sign up button pressed")}>
-        <Text>SIGN UP</Text>
+      <TouchableOpacity style ={styles.square_buttons} onPress={()=> console.log("Resend button pressed")}>
+      <Text>Resend Code!</Text>
       </TouchableOpacity>
-     
-      <Text>Already a member?</Text>
 
-      <TouchableOpacity style= {styles.square_buttons}
-      onPress={()=> console.log("Log in button pressed")}>
-      <Text>LOG IN</Text>
+      <TouchableOpacity style ={styles.square_buttons} onPress={()=> console.log("Verify button pressed")}>
+      <Text>VERIFY EMAIL</Text>
       </TouchableOpacity>
-    
+
       <Image source={Final_Name_Image}/>
     </ImageBackground>
-   </SafeAreaView>
+
+    </SafeAreaView>
+    
   );
 }
 
@@ -73,13 +56,14 @@ const styles = StyleSheet.create({
     borderRadius:99, 
     
   }, 
-  
+
   input: {
     height: 40,
     margin: 12,
     padding: 10,
     borderWidth: 1, 
   },
+
 
 
 })

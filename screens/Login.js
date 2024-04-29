@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet, ImageBackground, Button, StatusBar, SafeAreaView, TextInput} from 'react-native';
+import { View, Text, Image, StyleSheet, ImageBackground, Button, TouchableOpacity, StatusBar, SafeAreaView, TextInput} from 'react-native';
 import React from 'react';
 import { useState } from 'react';
 
@@ -13,7 +13,8 @@ export default function Login() {
   const [User_Password, setPassword] = useState('');
 
   return (
-    <ImageBackground source= {Background_Image} style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <ImageBackground source= {Background_Image} style={styles.container}>
       <Image source = {Log_In_Image}/>
 
       <Text style= {styles.text_style1}>Welcome Back!</Text>
@@ -28,20 +29,29 @@ export default function Login() {
         placeholder= "Enter password" secureTextEntry= {true}/>
         
       {/* you can create a function and apply it to onPress*/}
-      <Button title ="Forgot Password" 
-      onPress= {() =>console.log("Forgot Button pressed")}/>
-
-      <Button title = "UNLOCK YOUR PRODUCTIVITY" 
+      <TouchableOpacity style ={styles.square_buttons}
+      onPress= {() =>console.log("Forgot Button pressed")}>
+        <Text>Forgot Password</Text>
+      </TouchableOpacity>
+     
+      <TouchableOpacity
       onPress= {() =>console.log("Unlock Button pressed")} 
-      style ={styles.square_buttons}/>
+      style ={styles.square_buttons}>
+        <Text> UNLOCK YOUR PRODUCTIVITY</Text>
+      </TouchableOpacity>
+      
 
       <Text> Don't have an account?</Text>
-      <Button title = "Register Now" 
-      onPress= {() =>console.log("Register Button pressed")}/>
-
+      
+      <TouchableOpacity style ={styles.square_buttons}
+      onPress= {() =>console.log("Register Button pressed")}>
+      <Text>Register Now</Text>
+      </TouchableOpacity>
+      
     <Image style = {styles.final}source = {Final_Name_Image}/>
-
     </ImageBackground>
+    </SafeAreaView>
+    
   );
 }
 
@@ -56,8 +66,10 @@ const styles = StyleSheet.create({
   },
 
   square_buttons: {
+    backgroundColor:'#DCBDFF',
+    borderRadius:99, 
     
-  },
+  }, 
   
   input: {
     height: 40,

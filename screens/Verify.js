@@ -1,6 +1,7 @@
-import { View, Text, ImageBackground, Image, Button, StyleSheet, SafeAreaView,TouchableOpacity } from 'react-native';
+import { View, Text, ImageBackground, Image, Button, StyleSheet, SafeAreaView,TouchableOpacity, TextInput } from 'react-native';
 import React from 'react';
-//import { useState } from 'react';
+import { useState } from 'react';
+//import { OtpInput } from 'react-native-otp-entry';
 
 //images
 const Verify_Email_Image = require('./assets/verify_email.png');
@@ -9,7 +10,7 @@ const Background_Image = require("./assets/bg.png");
 
 export default function Verify() {
 
- //const [OTP, setOTP] = useState('');
+ const [OTP, setOTP] = useState([" ", " ", " ", " ", " ", " "] );
  
 
   return (
@@ -19,9 +20,17 @@ export default function Verify() {
 
       <Text>Let's Verify Your Email</Text>
       <Text>Code is given to your given email</Text>
-      {/* inset box for otp*/ }
-      {/*<TextInput style= {styles.input} value ={OTP} onChangeText={setOTP} 
-        placeholder= "Enter OTP" keyboardType = "numeric"/>*/}
+     <View style= {styles.OTPContainer}>
+     {OTP.map ((value, index) => (
+        <TextInput
+          key={index}
+          style ={styles.otpInput}
+          maxLength={1}
+          keyboardType='numeric'
+        />
+      ))}
+     </View>
+     
 
       <Text>Didn't receive code? </Text>
 
@@ -64,6 +73,23 @@ const styles = StyleSheet.create({
     borderWidth: 1, 
   },
 
+    otpInput: {
+    height:50, 
+    width: 50,
+    borderWidth: 1,
+    borderRadius: 5,
+    textAlign: "center",
+    margin: 5,
+    backgroundColor: "white",
+    fontSize: 18,
+    },
+    OTPContainer: {
+    flexDirection: "row",
+    padding: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 10
+    }
 
 
 })

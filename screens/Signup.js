@@ -46,7 +46,7 @@ export default function Signup() {
         <Text>Log In</Text>
       </TouchableOpacity>
 
-      <Image source={Final_Name_Image}/>
+      <Image style = {styles.final} source={Final_Name_Image}/>
     </ImageBackground>
     </SafeAreaView>
     
@@ -58,10 +58,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  final: {
-    
-  },
+  }
+  ,
 
   square_buttons: {
     backgroundColor:'#DCBDFF',

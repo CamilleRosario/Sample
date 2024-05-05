@@ -1,80 +1,124 @@
-import { View, Text, ImageBackground, Image, Button, StyleSheet, TextInput, TouchableOpacity, SafeAreaView } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, SafeAreaView, Image, ImageBackground, StyleSheet } from 'react-native'
 import React from 'react';
 import { useState } from 'react';
 
-//images
-const Sign_Up_Image = require('./assets/sign_up.png');
-const Final_Name_Image = require("./assets/FINAL_NAME.png");
-const Background_Image = require("./assets/bg.png");
-
 export default function Signup() {
 
-  //Email and password declaration
-  const [User_Email, setEmail]= useState("");
-  const [User_Password, setPassword] = useState("");
-  const [User_Confirm_Password, setConfirmPassword] = useState("");
-  
-
-  //Need to add validation for confirm password
-
+  const [Email,setEmail]= useState('');
+  const [Password, setPassword] = useState("");
+  const [Confirm_Password, setConfirmPassword] = useState("");
 
   return (
-    <SafeAreaView style ={styles.container}>
-      <ImageBackground source= {Background_Image} style = {styles.container}>
-      <Image source ={Sign_Up_Image}/>
-      <Text>Let's create your account</Text>
-      <Text>Creating Reminders Just For You</Text>
+   <SafeAreaView style= {{flex: 1}}>
+    <ImageBackground source= {require('./assets/bg.png')} style={{flex:1}}>
+    <View style= {styles.container}>
+      <Image style = {styles.header_image}source = {require('./assets/sign_up.png')}/>
+    </View>
 
-      <Text>Email Address</Text>
-      <TextInput style = {styles.input} value = {User_Email} onChangeText={setEmail}/>
+     <View style= {{alignItems: 'center', justifyContent: 'center', marginBottom: 20}}>
+     <Text style= {styles.title_text}> Let's Create Your Account</Text>
+      <Text style= {styles.subtitle_text}> Create Reminders For You.</Text>
+     </View>
+
+     <View style = {{paddingLeft:30, paddingRight: 30}}>
+      <Text style= {styles.input_title}>EMAIL</Text>
+      <TextInput style= {styles.input}value ={Email} onChangeText={setEmail} placeholder='example@gmail.com'/>
       
-      <Text>Password</Text>
-      <TextInput style= {styles.input} value ={User_Password} onChangeText={setPassword} 
-        placeholder= "Enter password" secureTextEntry= {true}/>
+      <Text style= {styles.input_title}>PASSWORD</Text>
+      <TextInput style= {styles.input} value ={Password} onChangeText={setPassword} 
+        placeholder= "Enter your Password" secureTextEntry= {true}/>
+      
+      <Text style= {styles.input_title}>CONFIRM  PASSWORD</Text>
+      <TextInput style= {styles.input} value ={Confirm_Password} onChangeText={setConfirmPassword} 
+        placeholder= "Re-enter your Password" secureTextEntry= {true}/>
+      </View>
 
-      <Text>Confirm Password</Text>
-      <TextInput style= {styles.input} value ={User_Confirm_Password} onChangeText={setConfirmPassword} 
-        placeholder= "Enter new password" secureTextEntry= {true}/>
-
-      <TouchableOpacity style ={styles.square_buttons} onPress={()=> console.log("Send code button pressed")}>
-        <Text>SEND CODE</Text>
+      <View style ={{alignItems: 'center'}}>
+      <TouchableOpacity onPress= {() =>console.log("Send Code Button pressed")} 
+      style ={styles.main_buttons}>
+      <Text style= {styles.Button_Text}> SEND CODE</Text>
       </TouchableOpacity>
+      </View>
 
-      <Text>Already a member? </Text>
-
-      <TouchableOpacity style ={styles.square_buttons} onPress={()=> console.log("Log In button pressed")}>
-        <Text>Log In</Text>
+      <View style = {styles.Login_Style}>    
+    <Text style= {{color:'#727272', fontSize: 11}}> Already a member?</Text>
+      <TouchableOpacity onPress= {() =>console.log("login Button pressed")}> 
+      <Text style = {{fontSize: 11}}>Log in!
+      </Text>
       </TouchableOpacity>
-
-      <Image style = {styles.final} source={Final_Name_Image}/>
+    </View>
+ 
+    <View style = {{alignItems: 'center'}}>
+      <Image source = {require('./assets/footerName.png')} style = {styles.footer_style}/>
+    </View>
     </ImageBackground>
-    </SafeAreaView>
-    
-  );
+   </SafeAreaView>
+  )
 }
-
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-  ,
-
-  square_buttons: {
-    backgroundColor:'#DCBDFF',
-    borderRadius:99, 
-    
-  }, 
-
-  input: {
-    height: 40,
-    margin: 12,
-    padding: 10,
-    borderWidth: 1, 
+    alignItems: 'center',
+    justifyContent:'center'
   },
-
-
-
-
+  title_text:{
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: "#3D405B",
+  },
+  subtitle_text: {
+    fontWeight: 'bold',
+    fontSize: 15,
+    color: "#545454",
+    marginBottom: 10,
+  },
+  input_title: {
+    fontWeight: 'bold',
+    fontSize: 13,
+    color: "#545454",
+  },
+  input: {
+    height: 40, 
+    width: '100%',
+    padding: 10,
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: 'gray',
+    backgroundColor: '#fff',
+    fontWeight:'bold',
+    marginBottom: 30,
+  },
+  header_image:{
+    marginTop: 50,
+    width: 220,
+    height: 210,
+  },
+  main_buttons:{
+    backgroundColor:'#DCBDFF',
+    borderRadius:10, 
+    height: 40, 
+    width: 300,
+    alignItems: 'center',
+    justifyContent: 'center',
+    Top: -5,
+  },
+  Button_Text:{
+    color: '#112C41',
+    fontWeight: 'bold',
+  },
+  Login_Style:{
+    color: '#908D8D',
+    marginBottom: 1,
+    marginTop:20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
+ 
+   },
+   footer_style: {
+     width: 250,
+     height:40,
+     marginTop:40,
+ 
+   },
+ 
 })

@@ -1,103 +1,74 @@
-import { View, Text, Image, StyleSheet, ImageBackground, Button, TouchableOpacity, StatusBar, SafeAreaView, TextInput} from 'react-native';
+import { View, Text, SafeAreaView, ImageBackground, Image, TouchableOpacity, TextInput, StyleSheet} from 'react-native'
 import React from 'react';
 import { useState } from 'react';
+//import { useNavigation } from '@react-navigation/native';
 
-//images
-const Log_In_Image = require("./assets/log_in.png");
-const Final_Name_Image = require("./assets/FINAL_NAME.png");
-const Background_Image = require("./assets/bg.png");
 
-export default function Login() {
-  //User name and password declaration
-  const [User_Name, setName]= useState("");
+export default function Login
+() {
+  const [User_Name, setName]= useState('');
   const [User_Password, setPassword] = useState('');
 
+  //const navigation = useNavigation();
+  
   return (
-    <SafeAreaView style={styles.container}>
-      <ImageBackground source= {Background_Image} style={styles.container}>
-      <Image style = {styles.Header_Image} source = {Log_In_Image}/>
+   <SafeAreaView style= {{flex: 1}}>
+    <ImageBackground source = {require('./assets/bg.png')} style= {{flex: 1}}>
+    <View style= {styles.container}>
+      <Image style = {styles.header_image}source = {require('./assets/log_in.png')}/>
+    </View>
 
-      <Text style= {styles.title_text}>Welcome Back!</Text>
-      <Text style= {styles.subtitle_text}>Creating Reminders For You</Text>
+    <View style= {{alignItems: 'center'}}>
+      <Text style= {styles.title_text}> Welcome Back!</Text>
+      <Text style= {styles.subtitle_text}> Create Reminders For You.</Text>
+    </View>
 
+    <View style = {{padding:30}}>
       <Text style= {styles.input_title}>USERNAME</Text>
-      <TextInput style= {styles.input} value ={User_Name} onChangeText={setName} placeholder='Enter your Username' />
-
-
-      <Text style = {styles.input_title}>PASSWORD</Text>
+      <TextInput style= {styles.input}value ={User_Name} onChangeText={setName} placeholder='Enter your Username'/>
+      
+      <Text style= {styles.input_title}>PASSWORD</Text>
       <TextInput style= {styles.input} value ={User_Password} onChangeText={setPassword} 
         placeholder= "Enter your Password" secureTextEntry= {true}/>
-        
-      {/* you can create a function and apply it to onPress*/}
-      <TouchableOpacity style ={styles.Forgot_button}
-      onPress= {() =>console.log("Forgot Button pressed")}>
-        <Text>Forgot Password?</Text>
-      </TouchableOpacity>
-     
-      <TouchableOpacity
-      onPress= {() =>console.log("Unlock Button pressed")} 
+    </View>
+
+      <View style={styles.Forgot_Style}> 
+        <TouchableOpacity onPress = {() => console.log("Pressed")}>
+          <Text style ={styles.Forgot_Text_Style}>Forgot Password?</Text></TouchableOpacity>
+
+      </View>
+  
+    <View style ={{alignItems: 'center'}}>
+    <TouchableOpacity onPress= {() =>console.log("Unlock Button pressed")} 
       style ={styles.main_buttons}>
-        <Text> UNLOCK YOUR PRODUCTIVITY</Text>
-      </TouchableOpacity>
-      
-
-      <Text> Don't have an account?</Text>
-      
-      <TouchableOpacity style ={styles.register_button}
-      onPress= {() =>console.log("Register Button pressed")}>
-      <Text>Register Now</Text>
-      </TouchableOpacity>
-      
-    <Image style = {styles.final}source = {Final_Name_Image}/>
-    </ImageBackground>
-    </SafeAreaView>
+    <Text style= {styles.Button_Text}> UNLOCK YOUR PRODUCTIVITY</Text>
+    </TouchableOpacity>
+    </View>
+  
     
-  );
-}
+    
+    <View style = {styles.Register_Style}>    
+    <Text style= {{color:'#727272', fontSize: 11}}> Don't have an account?</Text>
+      <TouchableOpacity onPress= {() =>console.log("Register Button pressed")}> 
+      <Text style = {{fontSize: 11}}>Register Now</Text>
+      </TouchableOpacity>
+    </View>
+ 
+    <View style = {{alignItems: 'center'}}>
+      <Image source = {require('./assets/footerName.png')} style = {styles.footer_style}/>
+    </View>
 
+    </ImageBackground>
+   </SafeAreaView>
+  )
+}
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  final: {
-    
-  },
-
-  main_buttons: {
-    backgroundColor:'#DCBDFF',
-    borderRadius:99, 
-    height: 40, 
-    width: 300,
     alignItems: 'center',
-    justifyContent: 'center'
-  }, 
-  input: {
-    height: 40, 
-    width: 300,
-    margin: 12,
-    padding: 10,
-    borderWidth: 1,
-    borderRadius: 10,
-    borderColor: 'gray',
-    backgroundColor: '#fff',
-    fontWeight:'bold',
+    justifyContent:'center',
   },
-  input_title: {
-    textAlign: 'left',
-    fontWeight: 'bold',
-    fontSize: 13,
-    color: "#545454",
-    marginTop:20,
-  },
-  register_button: {
-    height: 40, 
-    width: 100,
-    alignItems: 'flex-end',
+  header_image:{
     marginTop: 50,
-  },
-  Header_Image: {
     width: 220,
     height: 210,
   },
@@ -111,8 +82,62 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "#545454",
     marginBottom: 10,
-   },
+  },
+  input_title: {
+    fontWeight: 'bold',
+    fontSize: 13,
+    color: "#545454",
+  },
+  input: {
+    height: 40, 
+    width: '100%',
+    padding: 10,
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: 'gray',
+    backgroundColor: '#fff',
+    fontWeight:'bold',
+    marginBottom: 30,
+  },
+  Forgot_Style: {
+      alignItems: 'flex-end',
+      justifyContent: 'center',
+      paddingRight: 30,
+      top: -50,
+      
+     },
+  Forgot_Text_Style:{
+    color: '#908D8D',
+    fontSize: 12,
+  }, 
+  main_buttons:{
+    backgroundColor:'#DCBDFF',
+    borderRadius:10, 
+    height: 40, 
+    width: 300,
+    alignItems: 'center',
+    justifyContent: 'center',
+    
+  },
+  Button_Text:{
+    color: '#112C41',
+    fontWeight: 'bold',
+  },
+  Register_Style:{
+   color: '#908D8D',
+   marginBottom: 1,
+   marginTop:20,
+   flexDirection: 'row',
+   alignItems: 'center',
+   justifyContent: 'center'
 
+  },
+  footer_style: {
+    width: 250,
+    height:40,
+    marginTop:40,
 
+  },
+}
 
-})
+)

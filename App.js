@@ -1,113 +1,76 @@
-import { View, Text, Image, StyleSheet, ImageBackground, Button, TouchableOpacity, StatusBar, SafeAreaView, TextInput} from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, SafeAreaView, Image, ImageBackground, StyleSheet } from 'react-native'
 import React from 'react';
 import { useState } from 'react';
+import DatePicker, { getFormatedDate } from 'react-native-modern-datepicker';
 
-//images
-const Log_In_Image = require("./assets/log_in.png");
-const Final_Name_Image = require("./assets/FINAL_NAME.png");
-const Background_Image = require("./assets/bg.png");
 
-export default function Login() {
-  //User name and password declaration
-  const [User_Name, setName]= useState("");
-  const [User_Password, setPassword] = useState('');
+export default function App() {
+
+  const [Username, setName] =useState('');
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ImageBackground source= {Background_Image} style={styles.container}>
-      <Image style = {styles.Header_Image} source = {Log_In_Image}/>
+    <SafeAreaView style= {{flex:1}}>
+      <ImageBackground source= {require('./assets/bg.png')} style= {{flex:1}}>
 
-      <Text style= {styles.title_text}>Welcome Back!</Text>
-      <Text style= {styles.subtitle_text}>Creating Reminders For You</Text>
+      <View style= {styles.container}>
+      <Image style = {styles.header_image} source= {require('./assets/sign_up.png')}/>
+      </View>
 
+      <View style= {{alignItems: 'center', justifyContent: 'center', marginBottom: 20}}>
+     <Text style= {styles.title_text}> Let's Create Your Account</Text>
+      <Text style= {styles.subtitle_text}> Create Reminders For You.</Text>
+     </View>
+
+     <View style = {{paddingLeft:30, paddingRight: 30}}>
       <Text style= {styles.input_title}>USERNAME</Text>
-      <TextInput style= {styles.input} value ={User_Name} onChangeText={setName} placeholder='Enter your Username' />
+      <TextInput style= {styles.input}value ={Username} onChangeText={setName} placeholder='Enter your Username...'/>
+      </View>
 
-
-      <Text style = {styles.input_title}>PASSWORD</Text>
-      <TextInput style= {styles.input} value ={User_Password} onChangeText={setPassword} 
-        placeholder= "Enter your Password" secureTextEntry= {true}/>
-        
-      {/* you can create a function and apply it to onPress*/}
-      <View style ={styles.Forgot_button}> 
-        <TouchableOpacity 
-        onPress= {() =>console.log("Forgot Button pressed")}>
-        <Text>Forgot Password?</Text>
-      </TouchableOpacity>
+      <View style = {{paddingLeft:30, paddingRight: 30}}>
+      <Text style= {styles.input_title}>DATE OF BIRTH</Text>
+      
       </View>
      
-      <TouchableOpacity
-      onPress= {() =>console.log("Unlock Button pressed")} 
+
+     
+     <View style = {styles.Tapping_text}>
+     <Text style= {{textAlign: 'center',color:'#727272', fontSize: 11}}> By tapping Sign up You agree to the Terms & Conditions 
+     and Privacy Policy of this App!</Text>
+     </View>
+
+     <View style ={{alignItems: 'center', marginTop: 30}}>
+      <TouchableOpacity onPress= {() =>console.log("Sign up Button pressed")} 
       style ={styles.main_buttons}>
-        <Text> UNLOCK YOUR PRODUCTIVITY</Text>
+      <Text style= {styles.Button_Text}> SIGN UP</Text>
       </TouchableOpacity>
-      
-
-
-      
-      <Text style = {styles.Dont_text_style}> Don't have an account?</Text>
-      
-      <View style = {styles.register_button}> 
-      <TouchableOpacity
-        onPress= {() =>console.log("Register Button pressed")}>
-      <Text>Register Now</Text>
-
-      </TouchableOpacity> 
       </View>
-     
-      
-      <View style={styles.final}>
-      <Image style={{ flex: 1, aspectRatio: 1 }} source={Final_Name_Image}/>
-      </View>
-    
-    </ImageBackground>
+
+
+     <View style = {styles.Login_Style}>    
+    <Text style= {{color:'#727272', fontSize: 11}}> Already a member?</Text>
+      <TouchableOpacity onPress= {() =>console.log("login Button pressed")}> 
+      <Text style = {{fontSize: 11}}>Log in!
+      </Text>
+      </TouchableOpacity>
+    </View>
+
+    <View style = {{alignItems: 'center'}}>
+      <Image source = {require('./assets/footerName.png')} style = {styles.footer_style}/>
+    </View>
+
+      </ImageBackground>
     </SafeAreaView>
-    
-  );
+  )
 }
-
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
- 
-
-  main_buttons: {
-    backgroundColor:'#DCBDFF',
-    borderRadius:99, 
-    height: 40, 
-    width: 300,
     alignItems: 'center',
     justifyContent: 'center'
-  }, 
-  input: {
-    height: 40, 
-    width: 300,
-    margin: 12,
-    padding: 10,
-    borderWidth: 1,
-    borderRadius: 10,
-    borderColor: 'gray',
-    backgroundColor: '#fff',
-    fontWeight:'bold',
   },
-  input_title: {
-    textAlign: 'left',
-    fontWeight: 'bold',
-    fontSize: 13,
-    color: "#545454",
-    marginTop:20,
-  },
-  register_button: {
-   paddingLeft:188,
-   marginTop: -20,
-    
-  },
-  Header_Image: {
-    width: 220,
-    height: 210,
+  Tapping_text:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 30,
   },
   title_text:{
     fontSize: 24,
@@ -119,23 +82,54 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "#545454",
     marginBottom: 10,
+  },
+  input_title: {
+    fontWeight: 'bold',
+    fontSize: 13,
+    color: "#545454",
+  },
+  input: {
+    height: 40, 
+    width: '100%',
+    padding: 10,
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: 'gray',
+    backgroundColor: '#fff',
+    fontWeight:'bold',
+    marginBottom: 30,
+  },
+  header_image:{
+    marginTop: 50,
+    width: 220,
+    height: 210,
+  },
+  main_buttons:{
+    backgroundColor:'#DCBDFF',
+    borderRadius:10, 
+    height: 40, 
+    width: 300,
+    alignItems: 'center',
+    justifyContent: 'center',
+    Top: -5,
+  },
+  Button_Text:{
+    color: '#112C41',
+    fontWeight: 'bold',
+  },
+  Login_Style:{
+    color: '#908D8D',
+    marginBottom: 1,
+    marginTop:20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
+ 
    },
-   Forgot_button:{
-    alignItems: 'flex-end',
-    paddingLeft: 180,
-    paddingBottom: 10,
+   footer_style: {
+     width: 250,
+     height:40,
+     marginTop:40,
+ 
    },
-   Dont_text_style: {
-    paddingTop: 50,
-    marginRight: 60,
-  
-},
-final: {
-  flex:1,
-width: 300,
-height: 90,
-marginTop: 40,
-
-
-}}
-)
+})

@@ -1,63 +1,128 @@
-import { View, Text, ImageBackground, Image, Button, StyleSheet, SafeAreaView, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, SafeAreaView, ImageBackground, Image, TouchableOpacity, TextInput, StyleSheet} from 'react-native';
 import React from 'react';
 import { useState } from 'react';
 
-//images
-const Forgot_Password_Image = require('./assets/forgot_password.png');
-const Final_Name_Image = require("./assets/FINAL_NAME.png");
-const Background_Image = require("./assets/bg.png");
-
-export default function Resetpassword() {
-  //declaration of passwords
-  const [User_Password, setPassword] = useState('');
-  const [User_Confirm_Password, setConPassword] = useState('');
-
+export default function ForgotPassword () {
+  const [Password, setPassword]= useState('');
+  const [Confirm_Password, setConfirmPassword]= useState('');
   return (
-    <SafeAreaView style= {styles.container}>
-     <ImageBackground source= {Background_Image} style = {styles.container}>
-      <Image source ={Forgot_Password_Image}/>
-      <Text>Create your new password and don't forget it!</Text>
-      <Text>Password</Text>
-      <TextInput style= {styles.input} value ={User_Password} onChangeText={setPassword} 
-        placeholder= "Enter password" secureTextEntry= {true}/>
+   <SafeAreaView style= {{flex: 1}}>
+    <ImageBackground source = {require('./assets/bg.png')} style= {{flex: 1}}>
+    <View style= {styles.container}>
+      <Image style = {styles.header_image} source = {require('./assets/forgot_password.png')}/>  
+    </View>
 
-      <Text>Confirm Password</Text>
-      <TextInput style= {styles.input} value ={User_Confirm_Password} onChangeText={setConPassword} 
-        placeholder= "Enter new password" secureTextEntry= {true}/>
+    <View style= {{alignItems: 'center'}}>
+      <Text style= {styles.title_text}>Change Password </Text>
+      <Text style= {styles.subtitle_text}> Create new password and don't forget it! </Text>
+      </View>
 
-      <TouchableOpacity style= {styles.square_buttons} 
-      onPress={()=> console.log("Save password button pressed")}>
-      <Text> SAVE PASSWORD</Text>
-      </TouchableOpacity>
-      
-      <Image source={Final_Name_Image}/>
+
+    <View style = {{padding:30}}>
+      <Text style= {styles.input_title}>PASSWORD</Text>
+      <TextInput style= {styles.input}value ={Password} secureTextEntry = {true} 
+      onChangeText={setPassword} placeholder='Enter your Password...'/>
+      </View>
+
+      <View style = {{padding:30, marginTop: -65}}>
+      <Text style= {styles.input_title}>CONFIRM PASSWORD</Text>
+      <TextInput style= {styles.input}value ={Confirm_Password} secureTextEntry = {true} 
+      onChangeText={setConfirmPassword} placeholder='Re-Enter your Password...'/>
+      </View>
+
+    <View style ={{alignItems: 'center', marginTop: -20}}>
+    <TouchableOpacity onPress= {() =>console.log("send Button pressed")} 
+      style ={styles.main_buttons}>
+    <Text style= {styles.Button_Text}> SAVE PASSWORD</Text>
+    </TouchableOpacity>
+    </View>
+
+    <View style = {{alignItems: 'center'}}>
+      <Image source = {require('./assets/footerName.png')} style = {styles.footer_style}/>
+    </View>
     </ImageBackground>
-    </SafeAreaView>
-    
-  );
+
+
+   </SafeAreaView>
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent:'center',
   },
-  final: {
+  header_image:{
+    marginTop: 110,
+    width: 200,
+    height: 190,
+  },
+  title_text:{
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: "#3D405B",
+  },
+  subtitle_text: {
+    fontWeight: 'bold',
+    fontSize: 10,
+    color: "#545454",
+    alignItems: 'center',
+    
     
   },
-
-  square_buttons: {
-    backgroundColor:'#DCBDFF',
-    borderRadius:99, 
-    
-  }, 
+  input_title: {
+    fontWeight: 'bold',
+    fontSize: 13,
+    color: "#545454",
+  },
   input: {
-    height: 40,
-    margin: 12,
+    height: 40, 
+    width: '100%',
     padding: 10,
-    borderWidth: 1, 
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: 'gray',
+    backgroundColor: '#fff',
+    fontWeight:'bold',
+    marginBottom: 30,
+  },
+  main_buttons:{
+    backgroundColor:'#DCBDFF',
+    borderRadius:10, 
+    height: 40, 
+    width: 300,
+    alignItems: 'center',
+    justifyContent: 'center',
+    
+  },
+  Button_Text:{
+    color: '#112C41',
+    fontWeight: 'bold',
+  },
+  Register_Style:{
+   color: '#908D8D',
+   marginBottom: 1,
+   marginTop:20,
+   flexDirection: 'row',
+   alignItems: 'center',
+   justifyContent: 'center'
+
+  },
+  footer_style: {
+    width: 250,
+    height:40,
+    marginTop:100,
   },
 
-
+  title_text:{
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: "#3D405B",
+  },
+  subtitle_text: {
+    fontWeight: 'bold',
+    fontSize: 15,
+    color: "#545454",
+    marginBottom: 10,
+  },
 })

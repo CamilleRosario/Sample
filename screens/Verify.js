@@ -1,26 +1,24 @@
-import { View, Text, ImageBackground, Image, Button, StyleSheet, SafeAreaView,TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, SafeAreaView, Image, ImageBackground, StyleSheet } from 'react-native'
 import React from 'react';
 import { useState } from 'react';
-//import { OtpInput } from 'react-native-otp-entry';
+import style from 'react-native-datepicker/style';
 
-//images
-const Verify_Email_Image = require('./assets/verify_email.png');
-const Final_Name_Image = require("./assets/FINAL_NAME.png");
-const Background_Image = require("./assets/bg.png");
-
-export default function Verify() {
-
- const [OTP, setOTP] = useState([" ", " ", " ", " ", " ", " "] );
- 
-
+export default function App() {
+  const [OTP, setOTP] = useState([" ", " ", " ", " ", " ", " "] );
   return (
-    <SafeAreaView style= {styles.container}>
-      <ImageBackground source= {Background_Image} style = {styles.container}>
-      <Image source ={Verify_Email_Image}/>
+   <SafeAreaView style= {{flex:1}}>
+    <ImageBackground source ={require('./assets/bg.png')} style= {{flex:1}}>
+ 
+    <View style= {styles.container}>
+    <Image source={require('./assets/verify_email.png')} style= {styles.header_image}/>
+    </View>
 
-      <Text>Let's Verify Your Email</Text>
-      <Text>Code is given to your given email</Text>
-     <View style= {styles.OTPContainer}>
+    <View style= {{alignItems: 'center', justifyContent: 'center', marginBottom: 20}}>
+    <Text style= {styles.title_text}>Let's Verify Your Email</Text>
+    <Text style= {styles.subtitle_text}>Code is given to your given email</Text>
+    </View> 
+
+    <View style= {styles.OTPContainer}>
      {OTP.map ((value, index) => (
         <TextInput
           key={index}
@@ -30,53 +28,86 @@ export default function Verify() {
         />
       ))}
      </View>
-     
 
-      <Text>Didn't receive code? </Text>
-
-      <TouchableOpacity style ={styles.square_buttons} onPress={()=> console.log("Resend button pressed")}>
-      <Text>Resend Code!</Text>
+     <View style = {styles.Login_Style}>    
+    <Text style= {{color:'#727272', fontSize: 11}}> You didn't receive a code?</Text>
+      <TouchableOpacity onPress= {() =>console.log("Register Button pressed")}> 
+      <Text style = {{fontSize: 11}}>Resend code</Text>
       </TouchableOpacity>
+    </View>
 
-      <TouchableOpacity style ={styles.square_buttons} onPress={()=> console.log("Verify button pressed")}>
-      <Text>VERIFY EMAIL</Text>
-      </TouchableOpacity>
-
-      <Image source={Final_Name_Image}/>
-    </ImageBackground>
-
-    </SafeAreaView>
+    <View style = {{alignItems: 'center'}}>
+      <Image source = {require('./assets/footerName.png')} style = {styles.footer_style}/>
+    </View>
     
-  );
-}
 
+
+    </ImageBackground>
+   </SafeAreaView>
+  )
+}
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent:'center'
   },
-  final: {
-    
+  title_text:{
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: "#3D405B",
   },
-
-  square_buttons: {
+  subtitle_text: {
+    fontWeight: 'bold',
+    fontSize: 15,
+    color: "#545454",
+    marginBottom: 10,
+  },
+  input_title: {
+    fontWeight: 'bold',
+    fontSize: 13,
+    color: "#545454",
+  },
+ 
+  
+  header_image:{
+    marginTop: 100,
+    width: 210,
+    height: 210,
+  },
+  main_buttons:{
     backgroundColor:'#DCBDFF',
-    borderRadius:99, 
-    
-  }, 
-
-  input: {
-    height: 40,
-    margin: 12,
-    padding: 10,
-    borderWidth: 1, 
+    borderRadius:10, 
+    height: 40, 
+    width: 300,
+    alignItems: 'center',
+    justifyContent: 'center',
+    Top: -5,
   },
-
-    otpInput: {
-    height:50, 
-    width: 50,
+  Button_Text:{
+    color: '#112C41',
+    fontWeight: 'bold',
+  },
+ 
+  Login_Style:{
+    color: '#908D8D',
+    marginBottom: 1,
+    marginTop:20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
+ 
+   },
+   footer_style: {
+     width: 250,
+     height:40,
+     marginTop:40,
+ 
+   },
+   otpInput: {
+    height:40, 
+    width: 40,
     borderWidth: 1,
+    borderColor: 'gray',
     borderRadius: 5,
     textAlign: "center",
     margin: 5,
@@ -89,7 +120,22 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 10
-    }
-
+    },
+    Login_Style:{
+      color: '#908D8D',
+      marginBottom: 1,
+      marginTop:20,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center'
+   
+     },
+     footer_style: {
+      width: 250,
+      height:40,
+      marginTop:150,
+  
+    },
+  
 
 })

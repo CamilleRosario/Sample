@@ -1,7 +1,7 @@
-import { View, Text, SafeAreaView, ImageBackground, Image, TouchableOpacity, TextInput, StyleSheet} from 'react-native'
+import { View, Text, SafeAreaView, ImageBackground, Image, TouchableOpacity, TextInput, StyleSheet} from 'react-native';
 import React from 'react';
 import { useState } from 'react';
-//import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 
 export default function Login
@@ -9,13 +9,13 @@ export default function Login
   const [User_Name, setName]= useState('');
   const [User_Password, setPassword] = useState('');
 
-  //const navigation = useNavigation();
+  const navigation = useNavigation();
   
   return (
    <SafeAreaView style= {{flex: 1}}>
-    <ImageBackground source = {require('./assets/bg.png')} style= {{flex: 1}}>
+    <ImageBackground source = {require("./assets/bg.png")} style= {{flex: 1}}>
     <View style= {styles.container}>
-      <Image style = {styles.header_image}source = {require('./assets/log_in.png')}/>
+      <Image style = {styles.header_image}source = {require("./assets/log_in.png")}/>
     </View>
 
     <View style= {{alignItems: 'center'}}>
@@ -39,7 +39,7 @@ export default function Login
       </View>
   
     <View style ={{alignItems: 'center'}}>
-    <TouchableOpacity onPress= {() =>console.log("Unlock Button pressed")} 
+    <TouchableOpacity 
       style ={styles.main_buttons}>
     <Text style= {styles.Button_Text}> UNLOCK YOUR PRODUCTIVITY</Text>
     </TouchableOpacity>
@@ -49,13 +49,13 @@ export default function Login
     
     <View style = {styles.Register_Style}>    
     <Text style= {{color:'#727272', fontSize: 11}}> Don't have an account?</Text>
-      <TouchableOpacity onPress= {() =>console.log("Register Button pressed")}> 
+      <TouchableOpacity onPress= {() => navigation.navigate('Signup')}> 
       <Text style = {{fontSize: 11}}>Register Now</Text>
       </TouchableOpacity>
     </View>
  
     <View style = {{alignItems: 'center'}}>
-      <Image source = {require('./assets/footerName.png')} style = {styles.footer_style}/>
+      <Image source = {require("./assets/footerName.png")} style = {styles.footer_style}/>
     </View>
 
     </ImageBackground>

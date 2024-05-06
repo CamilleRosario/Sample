@@ -7,10 +7,10 @@ export default function App() {
   const [OTP, setOTP] = useState([" ", " ", " ", " ", " ", " "] );
   return (
    <SafeAreaView style= {{flex:1}}>
-    <ImageBackground source ={require('./assets/bg.png')} style= {{flex:1}}>
+    <ImageBackground source ={require("./assets/bg.png")} style= {{flex:1}}>
  
     <View style= {styles.container}>
-    <Image source={require('./assets/verify_email.png')} style= {styles.header_image}/>
+    <Image source={require("./assets/verify_email.png")} style= {styles.header_image}/>
     </View>
 
     <View style= {{alignItems: 'center', justifyContent: 'center', marginBottom: 20}}>
@@ -37,7 +37,7 @@ export default function App() {
     </View>
 
     <View style = {{alignItems: 'center'}}>
-      <Image source = {require('./assets/footerName.png')} style = {styles.footer_style}/>
+      <Image source = {require("./assets/footerName.png")} style = {styles.footer_style}/>
     </View>
     
 

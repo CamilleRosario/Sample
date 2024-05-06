@@ -7,9 +7,9 @@ export default function ForgotPassword () {
   const [Confirm_Password, setConfirmPassword]= useState('');
   return (
    <SafeAreaView style= {{flex: 1}}>
-    <ImageBackground source = {require('./assets/bg.png')} style= {{flex: 1}}>
+    <ImageBackground source = {require("./assets/bg.png")} style= {{flex: 1}}>
     <View style= {styles.container}>
-      <Image style = {styles.header_image} source = {require('./assets/forgot_password.png')}/>  
+      <Image style = {styles.header_image} source = {require("./assets/forgot_password.png")}/>  
     </View>
 
     <View style= {{alignItems: 'center'}}>
@@ -38,7 +38,7 @@ export default function ForgotPassword () {
     </View>
 
     <View style = {{alignItems: 'center'}}>
-      <Image source = {require('./assets/footerName.png')} style = {styles.footer_style}/>
+      <Image source = {require("./assets/footerName.png")} style = {styles.footer_style}/>
     </View>
     </ImageBackground>
 
